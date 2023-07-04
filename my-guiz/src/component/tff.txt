@@ -1,0 +1,41 @@
+<form onSubmit={handleSubmit}>
+<label htmlFor="question">Question:</label>
+<input type="text" id="question" onChange={handleQuestionChange} />
+
+<label htmlFor="option1">Option 1:</label>
+<input
+  type="text"
+  id="option1"
+  onChange={(e) => handleOptionChange(e, 0)}
+/>
+
+<label htmlFor="option2">Option 2:</label>
+<input
+  type="text"
+  id="option2"
+  onChange={(e) => handleOptionChange(e, 1)}
+/>
+
+<label htmlFor="option3">Option 3:</label>
+<input
+  type="text"
+  id="option3"
+  onChange={(e) => handleOptionChange(e, 2)}
+/>
+
+<label htmlFor="option4">Option 4:</label>
+<input
+  type="text"
+  id="option4"
+  onChange={(e) => handleOptionChange(e, 3)}
+/>
+<label htmlFor="answer">answer</label>
+<input
+  type="text"
+  id="answer"
+  onChange={handleanswerChange}
+/>
+<button type="submit">Submit</button>
+<button onClick={commit}>commit</button>
+
+</form>
