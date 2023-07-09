@@ -6,7 +6,6 @@ import  {  useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import{movenx,movep} from '../hook/fetchdata'
 import { useParams } from 'react-router-dom';
-
 export const Quiz = () => {
   const title =useParams()
 const result =useSelector(state=>state.result.result)
@@ -49,8 +48,8 @@ return (
      {/*} <h1 class='fo'>Quiz Application</h1>
       {/* display questions */}
       <div className='card_'>
-      {<Question title={title?.title} onChecked={onChecked}/>}
-            <button class="btnn btn-previous" onClick={onPrev}>Previous</button>
+      <Question title={title?.title} onChecked={onChecked}/>
+      <button class="btnn btn-previous" onClick={onPrev}>Previous</button>
       <button class="btnn btn-next" onClick={onnext}>Next</button>
        
       </div>

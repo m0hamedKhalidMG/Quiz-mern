@@ -214,8 +214,10 @@ main{
   padding: 20px;
 }
 .sidebar{
+  overflow: hidden;
+  
   background: #475569;
-
+  position: fixed;
   color: #fff;
   height: 150vh;
   width: 200px;
@@ -318,11 +320,13 @@ width: 140px;
     flex-direction: column;
     align-items: center;
     margin-bottom: 10px;
+    height: max-content;
   }
 .del{
   background-color: #f10c0c;
 }
 .update{
+  
   background-color: #475569;
 }
 .que{
@@ -338,4 +342,45 @@ width: 140px;
   bottom: 10px;
 width: 100px;
 margin-top: 10px;
+}
+.toggle-switch {
+  position: relative;
+  width: 48px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.slider:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+input:checked + .slider {
+  background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
 }

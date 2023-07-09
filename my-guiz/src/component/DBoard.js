@@ -31,7 +31,7 @@ export const  DBoard = () => {
         },
        
         {
-            path:"/admin/add",
+            path:"/admin/addcover",
             name:"Add Quiz",
             icon:<BiPlusMedical/>
         },

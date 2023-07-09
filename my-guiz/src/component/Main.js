@@ -23,7 +23,10 @@ export default function Main() {
         // Do something with the URL, e.g., navigate to the URL
       };
   return (
-    <div class='container border-x-4'>
+    <div id="root"   class="bg-slate-600 h-screen"
+    >
+    <div class="h-screen">
+       <div class='container border-x-4 h-screen' >
         <h1 class='title text-light text-white font-serif'>Quiz Application</h1>
 
         <ol>
@@ -46,7 +49,7 @@ export default function Main() {
         <button className='btn1' onClick={handleButtonClick}> Start Quiz
         </button>
                 </div>
-
-    </div>
-  )
+                </div></div>
+                </div>
+    )
 }

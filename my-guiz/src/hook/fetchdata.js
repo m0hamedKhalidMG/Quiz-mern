@@ -2,7 +2,6 @@
 import { getServerData } from "../helper/helper"; 
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
-import data from "../database/data";
 import *as Action from '../redux/questionreducer'
 export const  fetchdata = (title) => {
   const dispatch=  useDispatch();
@@ -16,32 +15,15 @@ useEffect(()=>{
 
 (async()=>{
 try{
-    const data= await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions?title=${encodeURIComponent(title)}`, (data) => data)
-   /* const allQuestions = [];
-    const allanswers = [];
+    const {filteredQ,sec,minute}= await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions?title=${encodeURIComponent(title)}`, (data) => data)
 
-    data.forEach((item) => {
-        const { questions } = item;
-        const { answers } = item;
-        const { cover } = item;
-
-          allQuestions.push(...questions);
-          allanswers.push(...answers);
-          console.log(cover)
-        });         
-
-   // const [{answers,cover}]= data
-  const questions=allQuestions;
-//console.log(allQuestions)
-//console.log(answers)
-*/   const [{questions,answers,cover}]= data
-
+const [{questions,answers,cover}]= filteredQ
+console.log(cover.duration)
 //let questions =await data;
 if(questions.length>0){
-
     setGetData(prev => ({ ...prev , isloading : false}));
-    setGetData(prev => ({...prev, apiData : questions}));
-dispatch(Action.startexam(questions))
+    setGetData(prev => ({...prev, apiData : questions,duration:cover.duration,max:cover.maxMark,num:cover.num,answers,minute:minute,sec:sec}));
+dispatch(Action.startexam({questions}))
 }
 else {
 

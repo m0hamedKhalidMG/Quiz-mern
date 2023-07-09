@@ -19,3 +19,40 @@ export async function postServerData(url, result, callback){
     const data = await (await axios.post(url, result))?.data;
     return callback ? callback(data) : data;
 }
+
+export async function postServercover(url, result, callback){
+   
+
+    const data = await (await axios.post(url, result))?.data;
+    return callback ? callback(data) : data;
+}
+export async function getServercover(url, callback){
+    const data = await (await axios.get(url))?.data;
+    return callback ? callback(data) : data;
+}
+export async function putcover(url,result,callback){
+    const data=await(await axios.put(url,result))?.data;
+    return callback ? callback(data) : data;
+
+}
+export async function deletecover(url, callback){
+   
+
+    const data = await (await axios.delete(url))?.data;
+    return callback ? callback(data) : data;
+}
+export async function getQuestionbyid(url, callback){
+
+    const data = await (await axios.get(url))?.data;
+    return callback ? callback(data) : data;
+}
+export async function putQuestion(url,result,callback){
+    const data=await(await axios.put(url,result))?.data;
+    return callback ? callback(data) : data;
+
+}export async function deleteQuestion(url, callback){
+   
+
+    const data = await (await axios.delete(url))?.data;
+    return callback ? callback(data) : data;
+}

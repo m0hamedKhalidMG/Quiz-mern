@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 
 import { useNavigate } from 'react-router-dom';
- function  Timer() {
-  const [seconds, setSeconds] = useState(59);
-  const [minute, setMinute] = useState(0);
-  
+ function  Timer({min , sec}) {
+  const [seconds, setSeconds] = useState(sec);
+  const [minute, setMinute] = useState(min);
       useEffect(() => {
           const interval = setInterval(() => {
             setSeconds((prevSeconds) => {
@@ -32,7 +31,7 @@ import { useNavigate } from 'react-router-dom';
       useEffect(() => {
         const timer = setTimeout(() => {
             navigate('/'); // Redirect to the desired page
-          }, 60000); // 1 minute = 60,000 milliseconds
+          }, min*60000+sec * 1000); // 1 minute = 60,000 milliseconds
       
           return () => {
             clearTimeout(timer); // Clear the timer on component unmount

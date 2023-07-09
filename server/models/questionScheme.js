@@ -6,12 +6,14 @@ const coverSchema=new Schema({
     createdAt:{type:Date,default:Date.now},
     title:{type: String,required: true},
     desc:{type: String,required: true},
-    numofquestion:{type: Number,required: true},
-    Duration:{type: Number,required: true},
-    Mark:{type: Number,required: true},
-    })
+    num:{type: Number,required: true},
+    duration:{type: Number,required: true},
+    maxMark:{type: Number,required: true},
+    starttime:{type: String,required: true},
+    id:{type: Number,required: true},
 
-    
+    active: { type: Boolean, required: true, default: false }
+    })
     const questionSchema=new Schema({
         questions:{type:Array,default:[]},
         answers:{type:Array,default:[]},

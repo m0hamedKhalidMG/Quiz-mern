@@ -7,16 +7,12 @@ import Timer from './Timer'
 export const  Question = ({title, onChecked }) => {
   const [checked, setChecked] = useState(undefined)
   const dispatch=useDispatch()
-const [{isloading,servererror}]=fetchdata(title)
+  const [{isloading,servererror,duration,minute,sec}]=fetchdata(title)
 const questions=useSelector(state=>state.question.queue[state.question.trace])
 const result=useSelector(state=>state.result.result)
 const {trace}=useSelector(state=>state.question)
-const [count, setCount] = useState(1);
-
-const increment = () => {
-  setCount(count + 1);
-};
 useEffect(() => {
+  document.body.style.backgroundColor = '#475569';
   console.log(trace,checked)
   dispatch(updateR({ trace, checked}))
 },[checked])
@@ -27,15 +23,17 @@ function onselect(i){
 }
 if(isloading) return <h3 className='text-light'>isLoading</h3>
 if(servererror) return <h3 className='text-light'>{servererror || "Unknown Error"}</h3>
-console.log(count)
   return (
-    <div className='questions' class="border-black">
+  
+
+    <div className='questions ' class="border-black">
+
     {questions ? (
-      <Timer class="time_"></Timer>
+      <Timer min={minute} sec={sec} class="time_"></Timer>
       ) : (
       <p class="font-serif">Error 404</p>
     )}
-    <h2 class='font-bold text-xl'> {questions?.question}</h2>
+    <h2 class='font-bold text-xl break-words'> {questions?.question}</h2>
     <ul key={questions?.id}>
     
 {
@@ -88,10 +86,9 @@ console.log(count)
         
         }
     </ul>
-    
-    </div>
-  )
-}
+    </div>    
+  )}
+
 
 
 
