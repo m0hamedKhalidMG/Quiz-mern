@@ -195,7 +195,7 @@ export async function getcover(req, res) {
   } catch (error) {
     res.json({ error });
   }
-}
+} 
 export async function getqestionsBYID(req, res) {
   try {
     const id = req.params.id;

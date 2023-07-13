@@ -43,17 +43,18 @@ if(result.length && result.length >= queue.length){
 
 return (
 
-  <div class='container'>
+  <div class='container '>
 
      {/*} <h1 class='fo'>Quiz Application</h1>
       {/* display questions */}
-      <div className='card_'>
+
+      <div className='card_ '>
       <Question title={title?.title} onChecked={onChecked}/>
       <button class="btnn btn-previous" onClick={onPrev}>Previous</button>
       <button class="btnn btn-next" onClick={onnext}>Next</button>
        
       </div>
-      
-  </div>
+      </div>
+
 )
 }

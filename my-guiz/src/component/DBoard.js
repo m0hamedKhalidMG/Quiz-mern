@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { BiFolderOpen ,BiPlusMedical,BiLogIn} from "react-icons/bi";
+import { BiFolderOpen ,BiPlusMedical,BiLogIn,BiLogOut ,BiUser} from "react-icons/bi";
 import { AiFillHome} from "react-icons/ai";
 
 import {
@@ -15,7 +15,7 @@ export const  DBoard = () => {
     const toggle = () => setIsOpen (!isOpen);
     const menuItem=[
         {
-            path:"/",
+            path:"/home",
             name:"Dashboard",
             icon:<AiFillHome/>
         },
@@ -25,9 +25,9 @@ export const  DBoard = () => {
             icon:<BiFolderOpen/>
         },
         {
-            path:"/admin/analytics",
-            name:"Analytics",
-            icon:<FaRegChartBar/>
+            path:"/admin/Adduser",
+            name:"Add new Student",
+            icon:<BiUser/>
         },
        
         {
@@ -38,7 +38,7 @@ export const  DBoard = () => {
         {
             path:"/Logout",
             name:"Logout",
-            icon:<BiLogIn />
+            icon:<BiLogOut />
         }
     ]
     return (

@@ -10,7 +10,10 @@ import swal from 'sweetalert';
 export const ShowQuiz = () => {
     const _id = useParams();
     const navigate = useNavigate(); 
-    
+    useEffect(() => {
+      document.body.style.backgroundColor = '#ffffff';
+
+    },[])
     const question=useSelector(state=>state.question.queue)
 const idcover=_id.id
 const dispatch=useDispatch()

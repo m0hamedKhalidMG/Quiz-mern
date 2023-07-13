@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 
-
+axios.defaults.withCredentials = true
 
 /** get server data */
 export async function getServerData(url, callback){
@@ -55,4 +55,14 @@ export async function putQuestion(url,result,callback){
 
     const data = await (await axios.delete(url))?.data;
     return callback ? callback(data) : data;
+}
+export async function login(url,result,callback){
+    const data=await(await axios.post(url,result))?.data;
+    return callback ? callback(data) : data;
+
+}
+export async function logout(url,callback){
+    const data=await(await axios.get(url))?.data;
+    return callback ? callback(data) : data;
+
 }

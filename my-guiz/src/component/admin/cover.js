@@ -1,4 +1,4 @@
-import React ,{useState}from 'react';
+import React ,{useState,useEffect}from 'react';
 import { postServerData } from '../../helper/helper';
 import { DBoard } from '../DBoard'
 import { useParams } from 'react-router-dom';
@@ -18,7 +18,9 @@ export const Cover = () => {
         num:'',
         active:false
 
-      });
+      }); 
+        
+  
       const handleStart = (e) => {
         setNewObject( { ...newObject, starttime: e.target.value });
 
@@ -60,7 +62,12 @@ export const Cover = () => {
       };
       
     
-      
+      useEffect(() => {
+        document.body.style.backgroundColor = '#ffffff ';
+       
+    
+      },[])
+    
     const commit =async()=>{
         try {
             console.log(newObject);

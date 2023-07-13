@@ -24,7 +24,11 @@ console.log(question)
   const handleQuestionChange = (e) => {
     setNewObject( { ...newObject, question: e.target.value });
     
-  };
+  };    useEffect(() => {
+    document.body.style.backgroundColor = '#111111';
+
+  },[])
+
   const notifySuccess = () => {
     toast.success('Successfull operation');
   };

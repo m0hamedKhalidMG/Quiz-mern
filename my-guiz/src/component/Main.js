@@ -4,15 +4,30 @@ import '../styles/Main.css'
 import { clearState } from '../redux/questionreducer';
 import {clearStateR} from '../redux/resultreducer'
 import { useDispatch } from "react-redux";
+import axios from 'axios'
+import { BiFolderOpen ,BiPlusMedical,BiLogIn,BiLogOut,BiUser  } from "react-icons/bi";
+
 export default function Main() {
     const navigate = useNavigate(); 
     const dispatch=  useDispatch();
-
     const inputRef = useRef(null)
     const handleInputChange = (event) => {
         inputRef.current = event.target.value;
         console.log( inputRef.current )
       };
+      const handleLoginout = (e) => {
+        localStorage.clear();
+         axios.get(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/logout`, {
+          withCredentials: true})
+          .then((re) => {
+            navigate('/',{replace:true});
+            
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+      
       const handleButtonClick = () => {
         dispatch(clearState());
         dispatch(clearStateR())
@@ -23,10 +38,21 @@ export default function Main() {
         // Do something with the URL, e.g., navigate to the URL
       };
   return (
-    <div id="root"   class="bg-slate-600 h-screen"
-    >
-    <div class="h-screen">
-       <div class='container border-x-4 h-screen' >
+    <div id="root"   class="bg-slate-600 h-screen">
+    <div class="w-screen h-10 fixed top-0 bg-zinc-600">    
+    
+    <button  onClick={handleLoginout} class="text-white font-bold py-2 px-4 text-3xl ">
+    <BiLogOut />
+
+
+  </button> <button  onClick={handleLoginout} class="text-white font-bold py-2 px-4 text-3xl ">
+    <BiUser />
+    </button>
+  
+  </div>
+
+    <div class="h-screen p-6">
+       <div class='container border-x-4 h-screen ' >
         <h1 class='title text-light text-white font-serif'>Quiz Application</h1>
 
         <ol>
@@ -39,7 +65,7 @@ export default function Main() {
 
         <form id="form">
             <input     ref={inputRef}
-            className="userid"
+            className="userid "
             type="text"
             placeholder="Username*"
             onChange={handleInputChange} />

@@ -24,7 +24,6 @@ function onselect(i){
 if(isloading) return <h3 className='text-light'>isLoading</h3>
 if(servererror) return <h3 className='text-light'>{servererror || "Unknown Error"}</h3>
   return (
-  
 
     <div className='questions ' class="border-black">
 
@@ -86,7 +85,7 @@ if(servererror) return <h3 className='text-light'>{servererror || "Unknown Error
         
         }
     </ul>
-    </div>    
+    </div>   
   )}
 
 

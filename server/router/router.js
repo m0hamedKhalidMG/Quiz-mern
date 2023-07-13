@@ -1,25 +1,40 @@
 import { Router } from "express";
+import *as controlle from '../controllers/authlogin.js'
+import {checkAuthentication}  from '../controllers/authlogin.js' ;
+import { getUsers, postUser, getProfilePage, login,logout,co,coo }  from'../controllers/userController.js' ;
+
 import *as controller from '../controllers/controllers.js'
+
 const router=Router();
 router.route('/questions')
-.get(controller.getqestions)
-.post(controller.insertqestions)
-.put(controller.updatequestion)
+.get(checkAuthentication,controller.getqestions)
+.post(checkAuthentication,controller.insertqestions)
+.put(checkAuthentication,controller.updatequestion)
 
 router.route('/result')
-.get(controller.getresult)
-.delete(controller.dropresult)
-.post(controller.storeresult)
+.get(checkAuthentication,controller.getresult)
+.delete(checkAuthentication,controller.dropresult)
+.post(checkAuthentication,controller.storeresult)
 router.route('/cover')
-.get(controller.getcover)
-.post(controller.insertcover)
+.get(checkAuthentication,controller.getcover)
+.post(checkAuthentication,controller.insertcover) 
 .put(controller.updatecover)
 router.route('/cover/:id')
-.delete(controller.delcover)
+.delete(checkAuthentication,controller.delcover)
 router.route('/questions/:id')
-.get(controller.getqestionsBYID)
+.get(checkAuthentication,controller.getqestionsBYID)
 
 router.route('/questions/:idcover/:id')
-.delete(controller.delquestion)
+.delete(checkAuthentication,controller.delquestion)
+
+
+router.get('/users', checkAuthentication, getUsers);
+router.get('/profile', checkAuthentication, getProfilePage)
+router.post('/signup', postUser);
+router.post('/login', login)
+router.get('/logout',checkAuthentication, logout)
+
+router.get('/co',checkAuthentication,co)
+router.get('/coo',checkAuthentication, coo)
 
 export default router
