@@ -5,18 +5,20 @@ import { faEye, faEyeSlash, } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router, Switch, Route, Link,useNavigate,useLocation } from 'react-router-dom';
 import { login,logout } from '../helper/helper';
 import App from './../App';
+import '../styles/Login.css';
 
 export const Login = () => {
+  const componentStyle = {
+    height: '100%',
+    backgroundColor: '#e0e2e2',
+  };
     const navigate = useNavigate(); 
     const location =useLocation()
-    const [username, setUsername] = useState('');
+    const [Email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const redirectpath=location.state?.path || "/home"
     const [showPassword, setShowPassword] = useState(false);
-    useEffect(() => {
-        document.body.style.backgroundColor = '#e0e2e2';
-
-      },[])
+    
       const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
       };
@@ -24,9 +26,9 @@ export const Login = () => {
         
 
       const handleLogin = (e) => {
-        login(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/login`, { username, password })
+        login(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/login`, { Email, password })
           .then(Response => {
-            if (Response.hasOwnProperty('username')) {  
+            if (Response.hasOwnProperty('Email')) {  
               localStorage.setItem('user', JSON.stringify(Response));
             navigate(redirectpath,{replace:true});
             }
@@ -37,6 +39,8 @@ export const Login = () => {
       };
       
   return (
+    <div style={componentStyle}>
+
     <div class="flex items-center justify-center h-screen">
     <div class="w-96 bg-white rounded-xl shadow-md overflow-hidden ml-5 mr-5">
     
@@ -50,9 +54,9 @@ export const Login = () => {
         class="w-full h-10 p-2 mb-4 my-1 bg-slate-100"
         type="text"
         id="email"
-        value={username}
+        value={Email}
         placeholder="Email"
-        onChange={e => setUsername(e.target.value)}
+        onChange={e => setEmail(e.target.value)}
       />
         </div>
         <div class="mb-2">
@@ -95,7 +99,8 @@ export const Login = () => {
         </div>
     </div>
   </div>
-  </div>
+  </div>  </div>
+
  
    )
 }

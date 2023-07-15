@@ -5,6 +5,10 @@ import {fetchdata} from '../hook/fetchdata'
 import {updateR} from '../hook/setreselt'
 import Timer from './Timer'
 export const  Question = ({title, onChecked }) => {
+  const rootStyle = {
+    backgroundColor: '#475569', // Replace this color with your desired background color
+    color: '#FFFFFF', // Replace this color with your desired text color
+  };
   const [checked, setChecked] = useState(undefined)
   const dispatch=useDispatch()
   const [{isloading,servererror,duration,minute,sec}]=fetchdata(title)
@@ -24,7 +28,6 @@ function onselect(i){
 if(isloading) return <h3 className='text-light'>isLoading</h3>
 if(servererror) return <h3 className='text-light'>{servererror || "Unknown Error"}</h3>
   return (
-
     <div className='questions ' class="border-black">
 
     {questions ? (

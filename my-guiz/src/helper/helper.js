@@ -66,3 +66,8 @@ export async function logout(url,callback){
     return callback ? callback(data) : data;
 
 }
+export async function SignUp(url,result,callback){
+    const data=await(await axios.post(url,result))?.data;
+    return callback ? callback(data) : data;
+
+}

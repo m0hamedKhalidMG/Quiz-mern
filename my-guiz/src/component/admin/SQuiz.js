@@ -6,6 +6,15 @@ import { Up_cover } from './Up_cover';
 import *as Action from '../../redux/coverR'
 import { useDispatch,useSelector } from 'react-redux'
 import swal from 'sweetalert';
+import '../../styles/App.css';
+
+import '../../styles/dashboard.css';
+import '../../styles/cover.css';
+
+const componentStyle = {
+  height: '100%',
+  backgroundColor: '#ffffff',
+};
 export const SQuiz = () => {
   const [data, setData] = useState([]);
   const [d, setDa] = useState(0);
@@ -54,7 +63,8 @@ const Show=(id)=>{
           }
         });
       });
-    }
+    } 
+   
   const  del=async(id)=>{
 
     try{
@@ -78,15 +88,16 @@ const Show=(id)=>{
   
   
   return (
-    <body style={{ backgroundColor: "white" }}>
+    <div style={componentStyle}>
+
     <div class="flex">
 
 <DBoard />
     <div class="custom ml-14 ;
-       w-full  h-fit">
+       w-screen  h-fit">
        {data.map((quiz, index) => (
-        
-      <div class="bg-indigo-100 container  my-3" >
+
+      <div class="bg-indigo-100 container w-screen    rounded-xl shadow-md overflow-hidden ml-5 mr-5 my-3" >
       
       <div class="flex items-center ">
       <img  src="https://thumbs.dreamstime.com/b/green-quiz-icon-white-background-78373045.jpg" alt="Image" class="w-14 rounded-full"/>
@@ -108,15 +119,15 @@ const Show=(id)=>{
       <button class="btnnAdd  my-1 " onClick={()=>Show(quiz._id)}>Attempts</button>
       <button class="  btnnAdd del  my-1"  onClick={()=>del(quiz._id)}>Delete</button>
 
-     </div>
+     </div>     </div>
+
     
-     </div>
        ))}
 
 <button class="btnnAdd " onClick={cover}>Add New Quiz</button>
 
     </div>
-    </div>
-    </body>
+    </div>    </div>
+
   )
 }

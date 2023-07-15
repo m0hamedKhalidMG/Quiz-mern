@@ -1,0 +1,9 @@
+{
+  "name": "your-project",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run my-guiz\"",
+    "server": "cd server && npm start",
+    "my-guiz": "cd  my-guiz && npm start"
+  }
+}

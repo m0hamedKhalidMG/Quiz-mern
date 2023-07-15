@@ -122,8 +122,8 @@ onClick={addquestion}          class="btnn2 w-auto bg-slate-500   flex justify-c
           
             <div class="">
               <div class="ml-2">
-                <p class="font-serif font-bold my-0 text-black">
-                  Q1){questions.question}
+                <p class="font-serif font-bold my-0 text-black break-words ">
+                  Q{index+1}) {questions.question}
                 </p>
                 <div class="flex flex-col ...">
                   <div class="flex flex-row  ">

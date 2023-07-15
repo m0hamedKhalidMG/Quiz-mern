@@ -14,6 +14,7 @@ const CreateObject = () => {
 console.log(question)
     const { title } = useParams();
     const [ans,setans]=useState(-1);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [idCounter, setIdCounter] = useState(question.length-1);
   const [newObject, setNewObject] = useState({
     id:uuid,
@@ -24,10 +25,7 @@ console.log(question)
   const handleQuestionChange = (e) => {
     setNewObject( { ...newObject, question: e.target.value });
     
-  };    useEffect(() => {
-    document.body.style.backgroundColor = '#111111';
-
-  },[])
+  };    
 
   const notifySuccess = () => {
     toast.success('Successfull operation');
@@ -46,6 +44,7 @@ setans((prevans) => {
 }
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsButtonDisabled(false)
     setAll((prevAll) => {
       
         const newQuestions = [...prevAll.questions, newObject];
@@ -55,17 +54,18 @@ setans((prevans) => {
       setIdCounter((prevCounter) => prevCounter + 1);
     setNewObject({id:uuid, question: '', options: ['', '', '']});
     e.target.reset();}
-
+  
   useEffect(() => {
     console.log(all);
   }, [all]);
 const commit =async()=>{
     try {
         const response = await postServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`,{ all,title});
+        if(response){
         notifySuccess()
-        // Handle response from the server
-        console.log('Data sent successfully');
-        console.log(response); // Handle the response data here
+        setIsButtonDisabled(true)
+
+        console.log('Data sent successfully');}
       } catch (error) {
         // Handle error sending data
         console.error('Error sending data:', error);
@@ -141,7 +141,7 @@ onChange={handleanswerChange}
 <div class="flex justify-between">
 
 <button type="submit" class="btnn2  bg-slate-500   flex justify-center"  >Save</button>
-<button  class="btnn2 bg-green-600   flex justify-center" onClick={commit}>commit</button></div>
+<button   class="btnn2 bg-green-600   flex justify-center" onClick={commit} disabled={isButtonDisabled}>commit</button></div>
     </div>     </form>
 
        </div>  

@@ -1,26 +1,35 @@
 import TokenModel from '../models/Token.js'
 import UserModel from '../models/User.js'
 import bcrypt from 'bcrypt';
+import validator from 'validator';
 export async function getUsers  (req, res)  {
   User.find((err, users) => {
     if (err) res.send('error while getting users');
     else res.send(users)
 }
 )
-}
-
+} 
 export async function postUser (req, res)  {
+  //await UserModel.deleteMany()
   const user = new UserModel(req.body);
   console.log(user)
-
+  if (!validator.isEmail(user.Email)) {
+    return res.status(400).json({ error: 'Invalid email format'   });
+  }
+  if (user.password !== user.confirmPassword) {
+    return res.status(400).json({error:  'Passwords do not match' });
+  }
   user.save()
   .then(doc => {
-    console.log('User saved:', doc);
-    res.send('saved user');
+    console.log(doc)
+    return res.status(200).json({ message: 'Registration successful' });
   })
   .catch(err => {
-    console.error('Error while saving user:', err);
-    res.send('error while saving user');
+    console.error('Error while saving user :', err);
+
+    return res.status(400).json({error: err.message });
+
+   // res.send('error while saving user');
   });
 }
 export async function getProfilePage (req, res)  {
@@ -29,9 +38,9 @@ export async function getProfilePage (req, res)  {
 };
 
 export async function login  (req, res)  {
-  const { username, password } = req.body;
+  const { Email, password } = req.body;
   console.log(password)
-  UserModel.findOne({ username })
+  UserModel.findOne({ Email })
   .exec()
   .then(user => {
     if (!user) {
@@ -87,16 +96,4 @@ export async function logout(req, res) {
     });
 
   }
-  export async function co  (req, res)  {
-    res.clearCookie('session66')
-    res.clearCookie('session')
-
-    //res.cookie('session465', 'mihh')
-    res.send({ad:"bbhb"});
-
-  }
-  export async function coo  (req, res)  {
-    //const cookies = req.cookies;
-    res.send({ad:"bjujbhb"});
-  }
-  
+ 

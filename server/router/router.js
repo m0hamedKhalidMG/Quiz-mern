@@ -1,7 +1,7 @@
 import { Router } from "express";
 import *as controlle from '../controllers/authlogin.js'
 import {checkAuthentication}  from '../controllers/authlogin.js' ;
-import { getUsers, postUser, getProfilePage, login,logout,co,coo }  from'../controllers/userController.js' ;
+import { getUsers, postUser, getProfilePage, login,logout }  from'../controllers/userController.js' ;
 
 import *as controller from '../controllers/controllers.js'
 
@@ -30,11 +30,10 @@ router.route('/questions/:idcover/:id')
 
 router.get('/users', checkAuthentication, getUsers);
 router.get('/profile', checkAuthentication, getProfilePage)
-router.post('/signup', postUser);
+router.post('/signup', checkAuthentication,postUser);
 router.post('/login', login)
 router.get('/logout',checkAuthentication, logout)
 
-router.get('/co',checkAuthentication,co)
-router.get('/coo',checkAuthentication, coo)
+
 
 export default router

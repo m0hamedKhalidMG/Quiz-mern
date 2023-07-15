@@ -1,14 +1,12 @@
 import mongoose from "mongoose";
 const {Schema} =mongoose
 const coverSchema=new Schema({
-    questions:{type:Array,default:[]},
-    answers:{type:Array,default:[]},
     createdAt:{type:Date,default:Date.now},
     title:{type: String,required: true},
     desc:{type: String,required: true},
-    num:{type: Number,required: true},
-    duration:{type: Number,required: true},
-    maxMark:{type: Number,required: true},
+    num:{type: String,required: true},
+    duration:{type: String,required: true},
+    maxMark:{type: String,required: true},
     starttime:{type: String,required: true},
     id:{type: Number,required: true},
 

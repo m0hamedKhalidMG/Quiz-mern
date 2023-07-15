@@ -1,6 +1,7 @@
 import { Cover, Questions } from "../models/questionScheme.js";
 import results from "../models/resultScheme.js";
 import cron from "node-cron";
+import validator from 'validator';
 
 export async function getqestions(req, res) {
   try {
@@ -159,27 +160,35 @@ export async function dropresult(req, res) {
     res.json({ error });
   }
 }
-
 export async function insertcover(req, res) {
-  try {
-    const newObject = req.body;
-    const { title, id, desc, duration, starttime, num, active, maxMark } =
+  console.log(req.body)
+
+    const newObject =new Cover(req.body);
+    const {  duration, num, maxMark } =
       newObject;
-    Cover.insertMany({
-      title,
-      id,
-      desc,
-      duration,
-      starttime,
-      num,
-      maxMark,
-      active,
-    });
-    res.json({ msg: "Data Saved Successfully...!" });
-  } catch (error) {
-    res.json({ error });
-  }
-}
+      if (!validator.isNumeric(num)) {
+        return res.status(400).json({ error: 'Invalid num of question format'   });
+      }
+      if (!validator.isNumeric(duration)) {
+        return res.status(400).json({ error: 'Invalid duration of question format'   });
+      }
+      if (!validator.isNumeric(maxMark)) {
+        return res.status(400).json({ error: 'Invalid maxMark of question format'   });
+      }
+      newObject.save()
+      .then(doc => {
+        console.log(doc)
+        return res.status(200).json({ message: 'ADD successful' });
+      })
+      .catch(err => {
+        console.error('Error while saving user :', err);
+    
+        return res.status(400).json({error: err.message });
+    
+      });
+    
+    }
+
 export async function dropcover(req, res) {
   try {
     await Questions.deleteMany({});
@@ -188,7 +197,7 @@ export async function dropcover(req, res) {
     res.json({ error });
   }
 }
-export async function getcover(req, res) {
+export async function getcover(req,  res) {
   try {
     const q = await Cover.find({});
     res.json(q);
