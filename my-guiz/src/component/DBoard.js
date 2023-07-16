@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import { BiFolderOpen ,BiPlusMedical,BiLogIn,BiLogOut ,BiUser} from "react-icons/bi";
 import { AiFillHome} from "react-icons/ai";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUsers  } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import {
     FaBars,
     FaRegChartBar,
@@ -30,7 +32,7 @@ export const  DBoard = () => {
         {
             path:"/admin/Adduser",
             name:"Add new Student",
-            icon:<BiUser/>
+            icon: <FontAwesomeIcon icon={faUser} />
         },
        
         {
@@ -39,9 +41,9 @@ export const  DBoard = () => {
             icon:<BiPlusMedical/>
         },
         {
-            path:"/Logout",
-            name:"Logout",
-            icon:<BiLogOut />
+            path:"/admin/users",
+            name:"All User",
+            icon: <FontAwesomeIcon icon={faUsers} />
         }
     ]
     return (
@@ -59,7 +61,7 @@ export const  DBoard = () => {
                {
                    menuItem.map((item, index)=>(
                        <NavLink to={item.path} key={index} className="link" >
-                           <div className="icon">{item.icon}</div>
+                           <div className="icon ">{item.icon}</div>
                            <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
                        </NavLink>
                    ))

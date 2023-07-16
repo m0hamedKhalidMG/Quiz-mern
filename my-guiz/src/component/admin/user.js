@@ -117,7 +117,7 @@ export const Adduser = () => {
                   Full name:
                 </label>
                 <input
-                  class="w-full h-8 font-serif p-1 bg-slate-100 rounded-sm "
+                  class="w-full h-8 font-serif p-1 bg-slate-100 rounded-sm border-1 border-slate-300"
                   type="text"
                   id="option1"
                   onChange={handlefullname}
@@ -134,7 +134,7 @@ export const Adduser = () => {
                   Email Adress
                 </label>
                 <input
-                  class="w-full h-8 font-serif p-1 bg-slate-100 rounded-sm "
+                  class="w-full h-8 font-serif p-1 bg-slate-100 rounded-sm border-1 border-slate-300"
                   type="text"
                   id="option1"
                   onChange={handleEmail}
@@ -149,7 +149,7 @@ export const Adduser = () => {
                   phone Number
                 </label>
                 <input
-                  class="w-full h-8 font-serif p-1 bg-slate-100 rounded-sm "
+                  class="w-full h-8 font-serif p-1 bg-slate-100 rounded-sm border-1 border-slate-300"
                   type="text"
                   id="option1"
                   onChange={handlephone}
@@ -170,7 +170,7 @@ export const Adduser = () => {
                   Group
                 </label>
                 <input
-                  class="w-full h-8 font-serif p-2 bg-slate-100 rounded-sm "
+                  class="w-full h-8 font-serif p-2 bg-slate-100 rounded-sm border-1 border-slate-300"
                   type="text"
                   id="option1"
                   required
@@ -185,7 +185,7 @@ export const Adduser = () => {
                   Phase
                 </label>
                 <input
-                  class="w-full h-8 font-serif p-2 bg-slate-100 rounded-sm "
+                  class="w-full h-8 font-serif p-2 bg-slate-100 rounded-sm border-1 border-slate-300"
                   type="text"
                   id="option1"
                   onChange={handlePhase}
@@ -207,7 +207,7 @@ export const Adduser = () => {
                   Street Address
                 </label>
                 <input
-                  class="w-full h-8 font-serif p-2 bg-slate-100 rounded-sm "
+                  class="w-full h-8 font-serif p-2 bg-slate-100 rounded-sm border-1 border-slate-300"
                   type="text"
                   id="option1"
                   onChange={handleStreetAddress}
@@ -223,7 +223,7 @@ export const Adduser = () => {
                   City
                 </label>
                 <input
-                  class="w-full h-8 font-serif p-2 bg-slate-100 rounded-sm "
+                  class="w-full h-8 font-serif p-2 bg-slate-100 rounded-sm border-1 border-slate-300"
                   type="text"
                   id="option1"
                   required
@@ -244,7 +244,7 @@ export const Adduser = () => {
                   Password
                 </label>
                 <input
-                  class="w-full h-8 font-serif p-2 bg-slate-100 rounded-sm "
+                  class="w-full h-8 font-serif p-2 bg-slate-100 rounded-sm border-1 border-slate-300"
                   type="text"
                   id="option1"
                   onChange={handlepassword}
@@ -259,7 +259,7 @@ export const Adduser = () => {
                   Confirm
                 </label>
                 <input
-                  class="w-full h-8 font-serif p-2 bg-slate-100 rounded-sm "
+                  class="w-full h-8 font-serif p-2 bg-slate-100 rounded-sm border-1 border-slate-300"
                   type="text"
                   id="option1"
                   onChange={handlepasswordConfirm}

@@ -388,3 +388,13 @@ input:checked + .slider:before {
   max-width: 500px;
  
 }
+.my-div {
+  
+  cursor: pointer;
+  
+
+}
+
+.my-div.hovered {
+  transform: perspective(200px) translateZ(10px);
+}

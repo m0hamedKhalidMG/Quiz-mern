@@ -13,6 +13,7 @@ import { ShowQuiz } from './component/admin/ShowQuiz';
 import { Updatequestion } from './component/admin/Updatequestion';
 import { Login } from './component/login';
 import { Adduser } from './component/admin/user';
+import { Users } from './component/admin/Users';
 //import { useAuth } from './component/AuthProvider';
 //import { AuthProvider } from './component/AuthProvider'; 
 const ProtectedRoute = ({children}) => {
@@ -107,6 +108,11 @@ const router = createBrowserRouter([
   },{
     path : '/Admin/Adduser/',
     element: <ProtectedRoute>{<Adduser />}</ProtectedRoute> 
+
+
+  },{
+    path : '/Admin/users/',
+    element: <ProtectedRoute>{<Users />}</ProtectedRoute> 
 
 
   },

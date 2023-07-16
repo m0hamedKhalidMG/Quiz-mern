@@ -3,11 +3,20 @@ import UserModel from '../models/User.js'
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 export async function getUsers  (req, res)  {
-  User.find((err, users) => {
-    if (err) res.send('error while getting users');
-    else res.send(users)
-}
-)
+  UserModel.find({}).then(data=>{
+
+res.send(data)
+
+  }).catch(err=>{
+
+    console.error('Error while get user :', err);
+
+    return res.status(400).json({error: err.message });
+
+  })
+
+
+
 } 
 export async function postUser (req, res)  {
   //await UserModel.deleteMany()

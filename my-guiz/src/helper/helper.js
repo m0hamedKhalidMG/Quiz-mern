@@ -71,3 +71,8 @@ export async function SignUp(url,result,callback){
     return callback ? callback(data) : data;
 
 }
+export async function getusers(url,callback){
+    const data=await(await axios.get(url))?.data;
+    return callback ? callback(data) : data;
+
+}
