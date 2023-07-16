@@ -19,37 +19,7 @@ export const Users = () => {
         backgroundColor: '#ffffff',
       }
 
-      const quizData = [
-        { title: 'Quiz 1', description: 'Description of Quiz 1' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-        { title: 'Quiz 2', description: 'Description of Quiz 2' },
-{ title: 'Quiz 2', description: 'Description of Quiz 2' },
-
-        // Add more quiz items here
-      ];
+  
   const [data, setData] = useState([]);
   const [d, setDa] = useState(0);
 
@@ -158,7 +128,7 @@ const Show=(id)=>{
 
        <input
          type="text"
-         class="w-1/5 h-8 font-serif p-1 bg-slate-100 rounded-sm border-1 border-slate-300"
+         class="w-1/5 h-8 font-serif p-1 bg-slate-100 rounded-lg border-1 border-slate-300"
 
          onChange={(e) => (e.target.value)}
          placeholder="Enter Name"
@@ -175,7 +145,7 @@ const Show=(id)=>{
        >
          <option value="">Phase 1</option>
          <option value="Male">Phase 2</option>
-         <option value="Female">Phase 2</option>
+         <option value="Female">Phase 3</option>
        </select>
      </div>
        </div>

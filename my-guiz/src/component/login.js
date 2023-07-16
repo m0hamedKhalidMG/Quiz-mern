@@ -29,7 +29,7 @@ export const Login = () => {
         login(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/login`, { Email, password })
           .then(Response => {
             if (Response.hasOwnProperty('Email')) {  
-              localStorage.setItem('user', JSON.stringify(Response));
+              localStorage.setItem('user',Response);
             navigate(redirectpath,{replace:true});
             }
           })

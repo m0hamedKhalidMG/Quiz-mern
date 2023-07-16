@@ -11,7 +11,7 @@ export const  Question = ({title, onChecked }) => {
   };
   const [checked, setChecked] = useState(undefined)
   const dispatch=useDispatch()
-  const [{isloading,servererror,duration,minute,sec}]=fetchdata(title)
+  const [{isloading,servererror,duration,minute,sec,idcover}]=fetchdata(title)
 const questions=useSelector(state=>state.question.queue[state.question.trace])
 const result=useSelector(state=>state.result.result)
 const {trace}=useSelector(state=>state.question)
@@ -21,6 +21,7 @@ useEffect(() => {
   dispatch(updateR({ trace, checked}))
 },[checked])
 function onselect(i){
+
   onChecked(i)
   setChecked(i)
   dispatch(updateR({trace, checked}))

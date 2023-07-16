@@ -18,12 +18,11 @@ try{
     const {filteredQ,sec,minute}= await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions?title=${encodeURIComponent(title)}`, (data) => data)
 
 const [{questions,answers,cover}]= filteredQ
-console.log(cover.duration)
 //let questions =await data;
 if(questions.length>0){
     setGetData(prev => ({ ...prev , isloading : false}));
-    setGetData(prev => ({...prev, apiData : questions,duration:cover.duration,max:cover.maxMark,num:cover.num,answers,minute:minute,sec:sec}));
-dispatch(Action.startexam({questions}))
+    setGetData(prev => ({...prev, apiData : questions,duration:cover.duration,max:cover.maxMark,num:cover.num,answers,minute:minute,sec:sec,idcover:cover._id}));
+dispatch(Action.startexam({questions,cover}))
 }
 else {
 

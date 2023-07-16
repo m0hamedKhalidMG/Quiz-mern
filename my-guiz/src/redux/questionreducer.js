@@ -6,7 +6,8 @@ name:'question',
 initialState:{
     queue:[],
     answers:[],
-    trace: 0
+    trace: 0,
+    cover:null
 }
 ,
 reducers:{
@@ -15,7 +16,8 @@ return {
 
     ...state,
     queue:action.payload.questions,
-    answers:action.payload.answers
+    answers:action.payload.answers,
+    cover:action.payload.cover
 
 }
 
@@ -27,7 +29,6 @@ return {
 movenext : (state) => {
 
 if(state.trace<state.queue.length-1){
-    console.log(state.trace+" "+state.queue.length)
     return {
         ...state,
         trace:state.trace+1

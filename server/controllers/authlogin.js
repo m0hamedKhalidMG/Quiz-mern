@@ -3,7 +3,7 @@ import UserModel from "../models/User.js";
 
 export async function checkAuthentication(req, res, next) {
   const token = req.cookies.session;
-  console.log(token)
+ // console.log(token)
 
   
   if (!token) {

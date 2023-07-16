@@ -110,7 +110,6 @@ onClick={addquestion}          class="btnn2 w-auto bg-slate-500   flex justify-c
         </button>
       </div>
       <div class=" ml-11     my-1 h-fit   bg-white text-black font-bold font-serif">
-      Questions of {cover[0].title}
     </div>
     <div class="bg-indigo-100  p-2 ml-9  my-3">
 

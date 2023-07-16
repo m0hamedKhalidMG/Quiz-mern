@@ -143,15 +143,21 @@ export async function getresult(req, res) {
   }
 }
 export async function storeresult(req, res) {
-  try {
-    const result = [0, 4, 7];
+  const result = new results(req.body);
+  console.log("re",result)
+  result.save()
+  .then(doc => {
+    res.send({message:"seccuess in store"})
+  })
+  .catch(err => {
+    console.error('Error while saving user :', err);
 
-    results.create({ result });
+    return res.status(400).json({error: err.message });
 
-    res.json({ mes: "store result" });
-  } catch (error) {
-    res.json({ error });
-  }
+   // res.send('error while saving user');
+  });
+
+  
 }
 export async function dropresult(req, res) {
   try {

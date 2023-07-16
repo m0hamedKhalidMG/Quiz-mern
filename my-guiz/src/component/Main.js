@@ -76,7 +76,7 @@ export default function Main() {
 
         <form id="form">
             <input     ref={inputRef}
-            className="userid "
+            className="userid text-black"
             type="text"
             placeholder="Username*"
             onChange={handleInputChange} />

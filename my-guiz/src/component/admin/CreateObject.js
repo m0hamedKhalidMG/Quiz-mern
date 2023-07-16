@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 const CreateObject = () => {
   const uuid = uuidv4();
   const question=useSelector(state=>state.question.queue)
-console.log(question)
+console.log(question+"uu")
     const { title } = useParams();
     const [ans,setans]=useState(-1);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);

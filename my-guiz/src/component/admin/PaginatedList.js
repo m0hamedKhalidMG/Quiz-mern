@@ -10,7 +10,6 @@ const PaginatedList = ({ data }) => {
     console.log(data)
   const [currentPage, setCurrentPage] = useState(0);
 
-  // Calculate the index of the first and last item to display on the current page
   const startIndex = currentPage * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
 
