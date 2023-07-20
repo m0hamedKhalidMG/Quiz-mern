@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run my-guiz\"",
+    "server": "cd server && npm start",
+    "my-guiz": "cd  my-guiz && npm start",
+
     "build": "cd server && npm install && cd ../my-guiz && npm install && npm run build"
   }
 }
