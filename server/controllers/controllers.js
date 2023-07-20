@@ -6,16 +6,14 @@ import validator from 'validator';
 export async function getqestions(req, res) {
   try {
     const title = req.query.title;
-    /* await Questions.deleteMany({})
-    await Cover.deleteMany({})*/
-    console.log(title);
+  
 
-    const q = await Questions.find().populate({
+    const q = await Questions.find({}).select("-answers").populate({
       path: "cover",
-      match: { title: title },
+      match: { title: title,active:true },
     });
     const filteredQ = q.filter((doc) => doc.cover !== null);
-    const currentDate = new Date();
+
     const options = {
       timeZone: "Europe/Bucharest",
       weekday: "short",
@@ -27,18 +25,34 @@ export async function getqestions(req, res) {
       second: "2-digit",
       timeZoneName: "short",
     };
+    
+    const currentDate = new Date();
+    
     const easternEuropeTime = currentDate.toLocaleString("en-US", options);
-    const time = easternEuropeTime.match(/\d{2}:\d{2}:\d{2}/)[0];
-    const date = easternEuropeTime.match(
-      /[a-zA-Z]{3}, [a-zA-Z]{3} \d{2}, \d{4}/
-    )[0];
+    
+    const date = easternEuropeTime.match(/[a-zA-Z]{3}, [a-zA-Z]{3} \d{2}, \d{4}/)[0];
+    
+    const localTime = currentDate.toLocaleString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "Europe/Bucharest",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+    
+    
     const [dateS, timeS] = filteredQ[0].cover.starttime.split("&");
     console.log(date);
     console.log(dateS);
-    console.log(time);
+    console.log(localTime);
     console.log(timeS);
-    const [hours1, minutes1, seconds1] = time.split(":");
-    const [hours2, minutes2, seconds2] = timeS.split(":");
+    const [hours1, minutes1, secondswithpm ] = localTime.split(":");
+    const [seconds1 ,localPeriod] =  secondswithpm.split("\u202f");
+console.log(localPeriod)
+    const [hours2, minutes2, second2swithpm] = timeS.split(":");
+    const [seconds2 ,localPeriod2] =  second2swithpm.split(" ");
     const totalSeconds1 =
       parseInt(hours1) * 3600 + parseInt(minutes1) * 60 + parseInt(seconds1);
     const totalSeconds2 =
@@ -53,12 +67,12 @@ export async function getqestions(req, res) {
       minute = 0;
       sec = 0;
     }
-    if (dateS <= date && timeS <= time) {
+    if (dateS <= date && timeS <= localTime&&localPeriod2===localPeriod&&sec>0) {
       console.log(minute + ":" + sec);
-      //filteredQ[0].cover.duration=filteredQ[0].cover.duration-minute
-      //console.log( filteredQ[0].cover.duration)
 
-      console.log(minute);
+      
+      
+      console.log(filteredQ);
       res.json({ filteredQ, minute, sec });
     } else {
       res.json({ error });
@@ -143,11 +157,23 @@ export async function getresult(req, res) {
   }
 }
 export async function storeresult(req, res) {
+  //await results.deleteMany()
   const result = new results(req.body);
+  const re=result.result;
+  const {answers} = await Questions.findOne({ cover: result.idcover });
+  if (answers) {
+ console.log(answers)}
   console.log("re",result)
+  let degree = 0;
+  answers.map((item, index) => {
+      if(item.ans===String(re[index]+1)){
+        degree++;
+      }
+    })
+    result.degree = degree;
   result.save()
   .then(doc => {
-    res.send({message:"seccuess in store"})
+    res.send({message:"seccuess in store",degree})
   })
   .catch(err => {
     console.error('Error while saving user :', err);
@@ -275,4 +301,21 @@ export async function delquestion(req, res) {
     .catch((error) => {
       return res.json({ message: "error ", error });
     });
+}
+export async function attempts(req,res){
+
+
+  try {
+    const id = req.params.id;
+   
+  const result = await results.find({idcover:id}).populate('userid');
+  if(result){
+    res.json(result);
+  }
+ 
+
+else return res.status(404).json({ error: "Questionsver not found" });
+} catch (error) {
+  res.status(500).json({ error: "Internal server error" });
+}
 }

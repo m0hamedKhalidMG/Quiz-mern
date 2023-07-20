@@ -14,38 +14,19 @@ import { Updatequestion } from './component/admin/Updatequestion';
 import { Login } from './component/login';
 import { Adduser } from './component/admin/user';
 import { Users } from './component/admin/Users';
+import Showresult from './component/admin/showresult';
 //import { useAuth } from './component/AuthProvider';
 //import { AuthProvider } from './component/AuthProvider'; 
 const ProtectedRoute = ({children}) => {
+
 const location=useLocation()
-/*const auth = useAuth();
-  const navigate = useNavigate();
-  useEffect(() => {
-    const savedUser = localStorage.getItem('user');
-console.log(JSON.parse(savedUser))
-    if (savedUser) {
-      auth.logIn(JSON.parse(savedUser));    }
-  }, []);
-  useEffect(() => {
-    if (!auth.user) {
-
-      navigate('/'); 
-    }
-  }, [auth, navigate]);
-
-  if (!auth.user) {
- 
-    return null; 
-  }
-
-  return children;*/
-
   const navigate = useNavigate();
   useEffect(() => {
   const savedUser = localStorage.getItem('user');
-console.log(JSON.parse(savedUser))
-    if (!savedUser) {
-      navigate('/', { state: { path: location.pathname } });
+const user =JSON.parse(savedUser)
+
+    if (!user.phase) {
+      navigate('/',  {replace:true});
         }
   }, [navigate]);
 if(!localStorage.getItem('user'))
@@ -54,6 +35,27 @@ return null;
   return children;
 
 };
+const ProtectedRouteforadmin = ({children}) => {
+
+  const location=useLocation()
+    const navigate = useNavigate();
+    useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+    const user=JSON.parse(savedUser)
+  console.log(user.role)
+      if (user.role===undefined) {
+
+        navigate('/home', { state: { path: location.pathname } });
+          }
+    }, [navigate]);
+    const savedUser = localStorage.getItem('user');
+
+    if (!savedUser.role==='admin') 
+      return null; 
+  
+    return children;
+  
+  };
 const router = createBrowserRouter([
   {
     path : '/',
@@ -72,47 +74,52 @@ const router = createBrowserRouter([
   {
     path : '/Admin',
 
-    element: <ProtectedRoute>{<DBoard />}</ProtectedRoute> 
+    element: <ProtectedRouteforadmin>{<DBoard />}</ProtectedRouteforadmin> 
 
   },
   {
     path : '/Admin/Quizzes',
-    element: <ProtectedRoute>{<SQuiz />}</ProtectedRoute> 
+    element: <ProtectedRouteforadmin>{<SQuiz />}</ProtectedRouteforadmin> 
 
 
   },{
     path : '/Admin/addquestion/:title',
-    element: <ProtectedRoute>{<CreateObject />}</ProtectedRoute> 
+    element: <ProtectedRouteforadmin>{<CreateObject />}</ProtectedRouteforadmin> 
 
 
   },{
     path : '/Admin/addcover',
-    element: <ProtectedRoute>{<Cover />}</ProtectedRoute> 
+    element: <ProtectedRouteforadmin>{<Cover />}</ProtectedRouteforadmin> 
 
 
   },{
     path : '/Admin/updatecover/:id',
-    element: <ProtectedRoute>{<Up_cover />}</ProtectedRoute> 
+    element: <ProtectedRouteforadmin>{<Up_cover />}</ProtectedRouteforadmin> 
 
 
   },{
     path : '/Admin/ShowQuiz/:id',
-    element: <ProtectedRoute>{<ShowQuiz />}</ProtectedRoute> 
+    element: <ProtectedRouteforadmin>{<ShowQuiz />}</ProtectedRouteforadmin> 
 
 
   },{
     path : '/Admin/ShowQuiz/update/:_id/:id',
-    element: <ProtectedRoute>{<Updatequestion />}</ProtectedRoute> 
+    element: <ProtectedRouteforadmin>{<Updatequestion />}</ProtectedRouteforadmin> 
 
 
   },{
     path : '/Admin/Adduser/',
-    element: <ProtectedRoute>{<Adduser />}</ProtectedRoute> 
+    element: <ProtectedRouteforadmin>{<Adduser />}</ProtectedRouteforadmin> 
 
 
   },{
     path : '/Admin/users/',
-    element: <ProtectedRoute>{<Users />}</ProtectedRoute> 
+    element: <ProtectedRouteforadmin>{<Users />}</ProtectedRouteforadmin> 
+
+
+  },{
+    path : '/Admin/result/:id',
+    element: <ProtectedRouteforadmin>{<Showresult />}</ProtectedRouteforadmin> 
 
 
   },

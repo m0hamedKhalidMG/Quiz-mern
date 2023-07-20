@@ -81,3 +81,8 @@ export async function sentresult(url,result,callback){
     return callback ? callback(data) : data;
 
 }
+export async function getresult(url,callback){
+    const data=await(await axios.get(url))?.data;
+    return callback ? callback(data) : data;
+
+}

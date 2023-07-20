@@ -55,12 +55,13 @@ export const Up_cover = () => {
     e.preventDefault();
   };
   const handleToggle = (isChecked) => {
-    setNewObject({ ...newObject, active: true });
+    setNewObject({ ...newObject, active: isChecked });
     console.log("Toggle switched:", isChecked);
   };
 
   const commit = async () => {
     try {
+
       for (let key in newObject) {
         if (newObject.hasOwnProperty(key)) {
           if (newObject[key] === "" || key === "id") {
@@ -69,7 +70,6 @@ export const Up_cover = () => {
           }
         }
       }
-      console.log(newObject);
       const id=_id.id;
       const response = await putcover(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/cover`,{id,newObject});
       console.log(response);

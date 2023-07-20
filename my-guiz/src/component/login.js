@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Switch, Route, Link,useNavigate,useLocation } 
 import { login,logout } from '../helper/helper';
 import App from './../App';
 import '../styles/Login.css';
-
 export const Login = () => {
   const componentStyle = {
     height: '100%',
@@ -16,7 +15,10 @@ export const Login = () => {
     const location =useLocation()
     const [Email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showError, setShowError] = useState(false);
     const redirectpath=location.state?.path || "/home"
+    const redirectpathadmin=location.state?.path || "/Admin/Quizzes"
+
     const [showPassword, setShowPassword] = useState(false);
     
       const togglePasswordVisibility = () => {
@@ -28,10 +30,20 @@ export const Login = () => {
       const handleLogin = (e) => {
         login(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/login`, { Email, password })
           .then(Response => {
+
             if (Response.hasOwnProperty('Email')) {  
-              localStorage.setItem('user',Response);
-            navigate(redirectpath,{replace:true});
+              localStorage.setItem('user', JSON.stringify(Response));
+
+              if (Response.hasOwnProperty('role')) {  
+                navigate(redirectpathadmin,{replace:true});
+                return
             }
+            navigate(redirectpath,{replace:true});
+
+          }else{
+            setShowError(true);
+          }
+
           })
           .catch((error) => {
             console.error(error);
@@ -75,6 +87,7 @@ export const Login = () => {
     className="absolute inset-y-0 right-0 pr-3 flex items-center"
     onClick={togglePasswordVisibility}
   >
+
     <FontAwesomeIcon
       icon={showPassword ? faEyeSlash : faEye}
       className="text-gray-500 cursor-pointer"
@@ -97,6 +110,11 @@ export const Login = () => {
             Forgot Password?
           </a>
         </div>
+        {showError && (
+          <label htmlFor="email" className="block text-red-700 text-sm font-bold">
+            Incorrect Password or Email
+          </label>
+        )}
     </div>
   </div>
   </div>  </div>

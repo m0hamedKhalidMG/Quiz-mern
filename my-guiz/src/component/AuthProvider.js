@@ -6,7 +6,7 @@ export function AuthProvider({ children }) {
 const [user, setuser] = useState(null);
 const logIn = (user) => {
    setuser(user);
-    console.log(user);
+  console.log(user);
 
   };
 

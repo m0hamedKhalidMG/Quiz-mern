@@ -44,6 +44,10 @@ const Show=(id)=>{
     const cover = (title) => {
     navigate(`/admin/addcover`);
   }
+  const showre=(id)=>{
+    navigate(`/Admin/result/${id}`);
+
+  }
   const update=(quiz)=>{
     
     navigate(`/admin/updatecover/${quiz._id}`);
@@ -116,7 +120,7 @@ const Show=(id)=>{
       <div class=" inline btnnAdd  my-1 bg-white text-black" >duration: {quiz.duration}    
       </div>
       <button class="btnnAdd update  my-1 " onClick={()=>update(quiz)}>Update</button>
-      <button class="btnnAdd  my-1 " onClick={()=>Show(quiz._id)}>Attempts</button>
+      <button class="btnnAdd  my-1 " onClick={()=>showre(quiz._id)}>Attempts</button>
       <button class="  btnnAdd del  my-1"  onClick={()=>del(quiz._id)}>Delete</button>
 
      </div>     </div>

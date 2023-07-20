@@ -10,14 +10,18 @@ export const  Question = ({title, onChecked }) => {
     color: '#FFFFFF', // Replace this color with your desired text color
   };
   const [checked, setChecked] = useState(undefined)
+
   const dispatch=useDispatch()
-  const [{isloading,servererror,duration,minute,sec,idcover}]=fetchdata(title)
+  const [{isloading,servererror,duration,minute,sec,idcover,num}]=fetchdata(title)
+  const [numofquestion, setnum] = useState(num)
+
 const questions=useSelector(state=>state.question.queue[state.question.trace])
 const result=useSelector(state=>state.result.result)
 const {trace}=useSelector(state=>state.question)
 useEffect(() => {
   document.body.style.backgroundColor = '#475569';
   console.log(trace,checked)
+
   dispatch(updateR({ trace, checked}))
 },[checked])
 function onselect(i){
@@ -36,7 +40,7 @@ if(servererror) return <h3 className='text-light'>{servererror || "Unknown Error
       ) : (
       <p class="font-serif">Error 404</p>
     )}
-    <h2 class='font-bold text-xl break-words'> {questions?.question}</h2>
+    <h2 class='font-bold text-xl break-words'> {trace+1}/{num}) {questions?.question}</h2>
     <ul key={questions?.id}>
     
 {
@@ -90,7 +94,10 @@ if(servererror) return <h3 className='text-light'>{servererror || "Unknown Error
         }
     </ul>
     </div>   
-  )}
+  )
+
+
+}
 
 
 

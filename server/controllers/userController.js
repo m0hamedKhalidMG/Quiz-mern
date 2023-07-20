@@ -1,5 +1,7 @@
 import TokenModel from '../models/Token.js'
 import UserModel from '../models/User.js'
+import results from "../models/resultScheme.js";
+
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 export async function getUsers  (req, res)  {
@@ -48,6 +50,7 @@ export async function getProfilePage (req, res)  {
 
 export async function login  (req, res)  {
   const { Email, password } = req.body;
+  
   console.log(password)
   UserModel.findOne({ Email })
   .exec()
@@ -81,11 +84,11 @@ export async function login  (req, res)  {
     console.error('Error while finding user:', err);
     res.send({ error: "unauthorized" });
   });
-
   
 
 }
      
+
 
 
 export async function logout(req, res) {
